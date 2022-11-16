@@ -23,4 +23,35 @@ public class Classe {
     @Size(min = 3, max = 2000)
     private String descricao;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEspecializacao() {
+        return especializacao;
+    }
+
+    public void setEspecializacao(String especializacao) {
+        this.especializacao = especializacao;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 }

@@ -5,8 +5,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "tb_raça")
-public class Raça {
+@Table(name = "tb_raca")
+public class Raca {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,9 +16,9 @@ public class Raça {
     @Size(min = 1, max = 100)
     private String nome;
     
-    @NotBlank(message = "Subraça é uma informação obrigatória.")
+    @NotBlank(message = "Subraca é uma informação obrigatória.")
     @Size(min = 1, max = 100)
-    private String subraça;
+    private String subraca;
 
     @Size(min = 3, max = 2000)
     private String biografia;
@@ -39,12 +39,12 @@ public class Raça {
 		this.nome = nome;
 	}
 
-	public String getSubraça() {
-		return subraça;
+	public String getSubraca() {
+		return subraca;
 	}
 
-	public void setSubraça(String subraça) {
-		this.subraça = subraça;
+	public void setSubraca(String subraca) {
+		this.subraca = subraca;
 	}
 
 	public String getBiografia() {
@@ -54,7 +54,5 @@ public class Raça {
 	public void setBiografia(String biografia) {
 		this.biografia = biografia;
 	}
-    
-    
 	
 }

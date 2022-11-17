@@ -2,6 +2,7 @@ package com.rpg.controller;
 
 import com.rpg.model.Classe;
 import com.rpg.repository.ClasseRepository;
+import com.rpg.service.ClasseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ public class ClasseController {
 
     @Autowired
     private ClasseRepository classeRepository;
+
+    @Autowired
+    private ClasseService classeService;
 
     @GetMapping
     public ResponseEntity<List<Classe>> getAll() {
@@ -37,10 +41,29 @@ public class ClasseController {
     }
 
     @PostMapping
-    public ResponseEntity<Classe> postClasse(@Valid @RequestBody Classe classe) {
+    public ResponseEntity<Classe> post(@Valid @RequestBody Classe classe) {
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(classeRepository.save(classe));
+        return classeService.cadastrarClasse(classe)
+                .map(resp -> ResponseEntity.status(HttpStatus.CREATED).body(resp))
+                .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 
+    }
+
+    @PutMapping
+    public ResponseEntity<Classe> put(@Valid @RequestBody Classe classe) {
+
+        return classeService.atualizarClasse(classe)
+                .map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
+                .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+
+        classeService.deletarClasse(id);
+        
     }
 
 }

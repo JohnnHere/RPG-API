@@ -1,9 +1,6 @@
 package com.rpg.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -36,6 +33,12 @@ public class Personagem {
     @NotBlank(message = "Nível é uma informação obrigatória.")
     @Size(min = 1, max = 100)
     private int nivel;
+
+    @ManyToOne
+    private Raca raca;
+
+    @ManyToOne
+    private Classe classe;
 
     public Long getId() {
         return id;

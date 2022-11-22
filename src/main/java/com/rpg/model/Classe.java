@@ -1,8 +1,11 @@
 package com.rpg.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_classe")
@@ -22,6 +25,10 @@ public class Classe {
 
     @Size(min = 3, max = 2000)
     private String descricao;
+
+    @OneToMany
+    @JsonIgnoreProperties("classe")
+    private List<Personagem> personagem;
 
     public Long getId() {
         return id;
